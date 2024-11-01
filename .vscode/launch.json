@@ -1,0 +1,35 @@
+{
+    // Use IntelliSense para saber los atributos posibles.
+    // Mantenga el puntero para ver las descripciones de los existentes atributos.
+    // Para más información, visite: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "frm11",
+            "request": "launch",
+            "mainClass": "condicionales.frm11",
+            "projectName": "appFP_xyz"
+        },
+        {
+            "type": "java",
+            "name": "frm01",
+            "request": "launch",
+            "mainClass": "secuenciales.frm01",
+            "projectName": "appFP_xyz"
+        },
+        {
+            "type": "java",
+            "name": "frm02",
+            "request": "launch",
+            "mainClass": "secuenciales.frm02",
+            "projectName": "appFP_xyz"
+        }
+    ]
+}
