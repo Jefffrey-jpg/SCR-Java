@@ -2,6 +2,7 @@ package condicionales;
 
 import java.awt.EventQueue;
 import java.awt.Insets;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -12,16 +13,17 @@ public class frm11 extends JFrame {
 	private static final long serialVersionUID = 1L;
 	JTextField txtNumero, txtSigno;
 
-        @SuppressWarnings("CallToPrintStackTrace")
 	public static void main(String[] args) {
-		EventQueue.invokeLater(() -> {
-                    try {
-                        frm11 frame = new frm11();
-                        frame.setVisible(true);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                });
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					frm11 frame = new frm11();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 	public frm11() {
