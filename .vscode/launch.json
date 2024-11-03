@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "frm04",
+            "request": "launch",
+            "mainClass": "secuenciales.frm04",
+            "projectName": "appFP_xyz"
+        },
+        {
+            "type": "java",
+            "name": "frm03",
+            "request": "launch",
+            "mainClass": "secuenciales.frm03",
+            "projectName": "appFP_xyz"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"
