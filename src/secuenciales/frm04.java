@@ -41,8 +41,8 @@ public class frm04 extends JFrame {
         lblPulgadas.setBounds(50, 90, 80, 30);
         getContentPane().add(lblPulgadas);
 
-        JLabel lblMetros = new JLabel("Estatura en metros :");
-        lblMetros.setBounds(30, 170, 120, 30);
+        JLabel lblMetros = new JLabel("Estatura en Metros :");
+        lblMetros.setBounds(30, 150, 120, 30);
         getContentPane().add(lblMetros);
 
         txtPies = new JTextField();
@@ -56,13 +56,13 @@ public class frm04 extends JFrame {
         getContentPane().add(txtPulgadas);
 
         txtMetros = new JTextField();
-        txtMetros.setBounds(150, 170, 80, 30);
+        txtMetros.setBounds(150, 150, 80, 30);
         txtMetros.setFocusable(false);
         txtMetros.setHorizontalAlignment(SwingConstants.RIGHT);
         getContentPane().add(txtMetros);
 
         JButton btnCalcular = new JButton("Calcular");
-        btnCalcular.setBounds(100, 130, 100, 30);
+        btnCalcular.setBounds(100, 120, 100, 30);
         getContentPane().add(btnCalcular);
 
         btnCalcular.addActionListener(e -> btnCalcular_actionPerformed());
