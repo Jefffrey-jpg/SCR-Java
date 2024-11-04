@@ -6,6 +6,48 @@
     "configurations": [
         {
             "type": "java",
+            "name": "frm26",
+            "request": "launch",
+            "mainClass": "condicionales.frm26",
+            "projectName": "appFP_xyz"
+        },
+        {
+            "type": "java",
+            "name": "frm03",
+            "request": "launch",
+            "mainClass": "recursivas.frm03",
+            "projectName": "appFP_xyz"
+        },
+        {
+            "type": "java",
+            "name": "frm02",
+            "request": "launch",
+            "mainClass": "recursivas.frm02",
+            "projectName": "appFP_xyz"
+        },
+        {
+            "type": "java",
+            "name": "frm16",
+            "request": "launch",
+            "mainClass": "repetitivas.frm16",
+            "projectName": "appFP_xyz"
+        },
+        {
+            "type": "java",
+            "name": "frm01",
+            "request": "launch",
+            "mainClass": "recursivas.frm01",
+            "projectName": "appFP_xyz"
+        },
+        {
+            "type": "java",
+            "name": "frm04",
+            "request": "launch",
+            "mainClass": "recursivas.frm04",
+            "projectName": "appFP_xyz"
+        },
+        {
+            "type": "java",
             "name": "frm04",
             "request": "launch",
             "mainClass": "secuenciales.frm04",

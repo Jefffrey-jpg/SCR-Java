@@ -1,4 +1,4 @@
-package repetitivas;
+package recursivas;
 
 import java.awt.EventQueue;
 import java.awt.Insets;
@@ -6,15 +6,15 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
-public class frm16 extends JFrame {
+public class frm06 extends JFrame {
     private static final long serialVersionUID = 1L;
-    private JTextField txtEntrada;
-    private JTextField txtResultado;
+    JTextField txtEntrada;
+    JTextField txtResultado;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
             try {
-                frm16 frame = new frm16();
+                frm06 frame = new frm06();
                 frame.setVisible(true);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -22,7 +22,7 @@ public class frm16 extends JFrame {
         });
     }
 
-    public frm16() {
+    public frm06() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(0, 0, 300, 200);
         setLayout(null);
@@ -31,12 +31,13 @@ public class frm16 extends JFrame {
         txtEntrada = new JTextField();
         txtEntrada.setBounds(20, 20, 240, 30);
         txtEntrada.setMargin(new Insets(5, 5, 5, 5));
+        txtEntrada.setToolTipText("Ingrese un número entero");
         getContentPane().add(txtEntrada);
 
-        JButton btnInvertir = new JButton("Invertir Cadena");
-        btnInvertir.setBounds(20, 60, 150, 30);
-        btnInvertir.addActionListener(e -> invertirCadena());
-        getContentPane().add(btnInvertir);
+        JButton btnCalcular = new JButton("Calcular Suma de Dígitos");
+        btnCalcular.setBounds(20, 60, 200, 30);
+        btnCalcular.addActionListener(e -> calcularSumaDigitos());
+        getContentPane().add(btnCalcular);
 
         txtResultado = new JTextField();
         txtResultado.setBounds(20, 100, 240, 30);
@@ -45,24 +46,19 @@ public class frm16 extends JFrame {
         getContentPane().add(txtResultado);
     }
 
-    protected void invertirCadena() {
-        String entrada = txtEntrada.getText();
-        if (entrada.isEmpty()) {
-            txtResultado.setText("Por favor, ingresa una cadena.");
-            return;
+    protected void calcularSumaDigitos() {
+        try {
+            int numero = Integer.parseInt(txtEntrada.getText());
+            int resultado = sumaDigitos(Math.abs(numero));
+            txtResultado.setText(String.valueOf(resultado));
+        } catch (NumberFormatException e) {
+            txtResultado.setText("Entrada inválida");
         }
-        String resultado = invertir(entrada);
-        txtResultado.setText(resultado);
     }
 
-    protected String invertir(String cadena) {
-        StringBuilder rpta = new StringBuilder();
-        int longitud = cadena.length();
-
-        for (int i = longitud - 1; i >= 0; i--) {
-            rpta.append(cadena.charAt(i));
-        }
-
-        return rpta.toString();
+    protected int sumaDigitos(int n) {
+        if (n < 10)
+            return n;
+        return (n % 10) + sumaDigitos(n / 10);
     }
 }

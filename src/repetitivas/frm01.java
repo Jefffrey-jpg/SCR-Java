@@ -14,22 +14,19 @@ public class frm01 extends JFrame {
     private JTextField txtResto;
 
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    frm01 frame = new frm01();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        EventQueue.invokeLater(() -> {
+            try {
+                frm01 frame = new frm01();
+                frame.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }
 
-    @SuppressWarnings("unused")
     public frm01() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(0, 0, 300, 250);
+        setBounds(0, 0, 300, 300);
         setLayout(null);
         setLocationRelativeTo(null);
 
@@ -74,17 +71,29 @@ public class frm01 extends JFrame {
     }
 
     private void calcularDivision() {
-        int dividendo = Integer.parseInt(txtDividendo.getText());
-        int divisor = Integer.parseInt(txtDivisor.getText());
-        int cociente = 0;
-        int resto = dividendo;
+        try {
+            int dividendo = Integer.parseInt(txtDividendo.getText());
+            int divisor = Integer.parseInt(txtDivisor.getText());
 
-        while (resto >= divisor) {
-            resto -= divisor;
-            cociente++;
+            if (divisor == 0) {
+                txtCociente.setText("Error: Divisor 0");
+                txtResto.setText("");
+                return;
+            }
+
+            int cociente = 0;
+            int resto = dividendo;
+
+            while (resto >= divisor) {
+                resto -= divisor;
+                cociente++;
+            }
+
+            txtCociente.setText(String.valueOf(cociente));
+            txtResto.setText(String.valueOf(resto));
+        } catch (NumberFormatException e) {
+            txtCociente.setText("Entrada inválida");
+            txtResto.setText("");
         }
-
-        txtCociente.setText(String.valueOf(cociente));
-        txtResto.setText(String.valueOf(resto));
     }
 }

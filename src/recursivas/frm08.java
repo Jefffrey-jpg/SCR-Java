@@ -1,21 +1,20 @@
-package repetitivas;
+package recursivas;
 
 import java.awt.EventQueue;
 import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
-import javax.swing.JOptionPane;
 
-public class frm13 extends JFrame {
+public class frm08 extends JFrame {
     private static final long serialVersionUID = 1L;
-    private JTextField txtEntrada;
-    private JTextField txtResultado;
+    JTextField txtEntrada;
+    JTextField txtResultado;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
             try {
-                frm13 frame = new frm13();
+                frm08 frame = new frm08();
                 frame.setVisible(true);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -23,7 +22,7 @@ public class frm13 extends JFrame {
         });
     }
 
-    public frm13() {
+    public frm08() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(0, 0, 300, 200);
         setLayout(null);
@@ -32,11 +31,12 @@ public class frm13 extends JFrame {
         txtEntrada = new JTextField();
         txtEntrada.setBounds(20, 20, 240, 30);
         txtEntrada.setMargin(new Insets(5, 5, 5, 5));
+        txtEntrada.setToolTipText("Ingrese la posición en la sucesión de Fibonacci");
         getContentPane().add(txtEntrada);
 
-        JButton btnCalcular = new JButton("Calcular Suma");
-        btnCalcular.setBounds(20, 60, 150, 30);
-        btnCalcular.addActionListener(e -> calcularSuma());
+        JButton btnCalcular = new JButton("Calcular Fibonacci");
+        btnCalcular.setBounds(20, 60, 200, 30);
+        btnCalcular.addActionListener(e -> calcularFibonacci());
         getContentPane().add(btnCalcular);
 
         txtResultado = new JTextField();
@@ -46,26 +46,23 @@ public class frm13 extends JFrame {
         getContentPane().add(txtResultado);
     }
 
-    protected void calcularSuma() {
-        String entrada = txtEntrada.getText();
+    protected void calcularFibonacci() {
         try {
-            int n = Integer.parseInt(entrada);
-            int suma = sumaMultiplo3No5(n);
-            txtResultado.setText("Suma de múltiplos de 3 no múltiplos de 5: " + suma);
+            int posicion = Integer.parseInt(txtEntrada.getText());
+            if (posicion < 0 || posicion > 30) {
+                txtResultado.setText("Ingrese un valor entre 0 y 30");
+            } else {
+                int resultado = fibonacci(posicion);
+                txtResultado.setText("Fibonacci: " + resultado);
+            }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Por favor, ingresa un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            txtResultado.setText("Entrada inválida");
         }
     }
 
-    protected int sumaMultiplo3No5(int n) {
-        int suma = 0;
-
-        for (int i = 1; i <= n; i++) {
-            if (i % 3 == 0 && i % 5 != 0) {
-                suma += i;
-            }
-        }
-
-        return suma;
+    protected int fibonacci(int n) {
+        if (n <= 1)
+            return n;
+        return fibonacci(n - 1) + fibonacci(n - 2);
     }
 }

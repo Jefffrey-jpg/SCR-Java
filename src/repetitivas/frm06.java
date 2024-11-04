@@ -8,26 +8,22 @@ import javax.swing.JTextField;
 
 public class frm06 extends JFrame {
     private static final long serialVersionUID = 1L;
-    JTextField txtNumero;
-    JTextField txtDesde;
-    JTextField txtHasta;
-    JTextField txtResultado;
-    String resultado;
+    private JTextField txtNumero;
+    private JTextField txtDesde;
+    private JTextField txtHasta;
+    private JTextField txtResultado;
 
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    frm06 frame = new frm06();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        EventQueue.invokeLater(() -> {
+            try {
+                frm06 frame = new frm06();
+                frame.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }
 
-    @SuppressWarnings("unused")
     public frm06() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(0, 0, 350, 350);
@@ -62,15 +58,21 @@ public class frm06 extends JFrame {
     }
 
     protected void generarTablaMultiplicarRango() {
-        int n = Integer.parseInt(txtNumero.getText());
-        int desde = Integer.parseInt(txtDesde.getText());
-        int hasta = Integer.parseInt(txtHasta.getText());
-        resultado = "";
+        try {
+            int n = Integer.parseInt(txtNumero.getText());
+            int desde = Integer.parseInt(txtDesde.getText());
+            int hasta = Integer.parseInt(txtHasta.getText());
+            StringBuilder resultado = new StringBuilder();
 
-        for (int i = desde; i <= hasta; i++) {
-            resultado += n + " x " + i + " = " + (n * i) + "\n";
+            for (int i = desde; i <= hasta; i++) {
+                resultado.append(n).append(" x ").append(i).append(" = ").append(n * i).append("\n");
+            }
+
+            txtResultado.setText(resultado.toString());
+        } catch (NumberFormatException e) {
+            txtResultado.setText("Entrada inválida");
+        } catch (IllegalArgumentException e) {
+            txtResultado.setText("Rango inválido");
         }
-
-        txtResultado.setText(resultado);
     }
 }

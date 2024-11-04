@@ -8,23 +8,20 @@ import javax.swing.JTextField;
 
 public class frm09 extends JFrame {
     private static final long serialVersionUID = 1L;
-    JTextField txtAltura;
-    JTextField txtResultado;
+    private JTextField txtAltura;
+    private JTextField txtResultado;
 
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    frm09 frame = new frm09();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        EventQueue.invokeLater(() -> {
+            try {
+                frm09 frame = new frm09();
+                frame.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }
 
-    @SuppressWarnings("unused")
     public frm09() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(0, 0, 300, 300);
@@ -49,19 +46,23 @@ public class frm09 extends JFrame {
     }
 
     protected void generarRectangulo() {
-        int n = Integer.parseInt(txtAltura.getText());
-        if (n < 4) {
-            txtResultado.setText("La altura debe ser >= 4.");
-            return;
+        try {
+            int n = Integer.parseInt(txtAltura.getText());
+            if (n < 4) {
+                txtResultado.setText("La altura debe ser >= 4.");
+                return;
+            }
+
+            StringBuilder rectangulo = new StringBuilder();
+            int ancho = 2 * n;
+
+            for (int i = 0; i < n; i++) {
+                rectangulo.append("*".repeat(ancho)).append("\n");
+            }
+
+            txtResultado.setText(rectangulo.toString());
+        } catch (NumberFormatException e) {
+            txtResultado.setText("Entrada inválida. Por favor, ingresa un número.");
         }
-
-        StringBuilder rectangulo = new StringBuilder();
-        int ancho = 2 * n;
-
-        for (int i = 0; i < n; i++) {
-            rectangulo.append("*".repeat(ancho)).append("\n");
-        }
-
-        txtResultado.setText(rectangulo.toString());
     }
 }

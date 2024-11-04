@@ -12,19 +12,16 @@ public class frm03 extends JFrame {
     private JTextField txtCantidadDivisores;
 
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    frm03 frame = new frm03();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        EventQueue.invokeLater(() -> {
+            try {
+                frm03 frame = new frm03();
+                frame.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }
 
-    @SuppressWarnings("unused")
     public frm03() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(0, 0, 300, 200);
@@ -55,15 +52,23 @@ public class frm03 extends JFrame {
     }
 
     private void calcularDivisores() {
-        int numero = Integer.parseInt(txtNumero.getText());
-        int cantidadDivisores = 0;
-
-        for (int i = 1; i <= numero; i++) {
-            if (numero % i == 0) {
-                cantidadDivisores++;
+        try {
+            int numero = Integer.parseInt(txtNumero.getText());
+            if (numero < 1) {
+                txtCantidadDivisores.setText("Número > 0");
+                return;
             }
-        }
 
-        txtCantidadDivisores.setText(String.valueOf(cantidadDivisores));
+            int cantidadDivisores = 0;
+            for (int i = 1; i <= numero; i++) {
+                if (numero % i == 0) {
+                    cantidadDivisores++;
+                }
+            }
+
+            txtCantidadDivisores.setText(String.valueOf(cantidadDivisores));
+        } catch (NumberFormatException e) {
+            txtCantidadDivisores.setText("Entrada inválida");
+        }
     }
 }

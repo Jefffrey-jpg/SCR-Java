@@ -5,26 +5,24 @@ import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+import javax.swing.JOptionPane;
 
 public class frm15 extends JFrame {
     private static final long serialVersionUID = 1L;
-    JTextField txtEntrada;
-    JTextField txtResultado;
+    private JTextField txtEntrada;
+    private JTextField txtResultado;
 
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    frm15 frame = new frm15();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        EventQueue.invokeLater(() -> {
+            try {
+                frm15 frame = new frm15();
+                frame.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }
 
-    @SuppressWarnings("unused")
     public frm15() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(0, 0, 350, 250);
@@ -38,12 +36,12 @@ public class frm15 extends JFrame {
 
         JButton btnMayusculas = new JButton("A Mayúsculas");
         btnMayusculas.setBounds(20, 60, 140, 30);
-        btnMayusculas.addActionListener(e -> convertirAMayusculas());
+        btnMayusculas.addActionListener(e -> convertirTextoAMayusculas());
         getContentPane().add(btnMayusculas);
 
         JButton btnMinusculas = new JButton("A Minúsculas");
         btnMinusculas.setBounds(180, 60, 140, 30);
-        btnMinusculas.addActionListener(e -> convertirAMinusculas());
+        btnMinusculas.addActionListener(e -> convertirTextoAMinusculas());
         getContentPane().add(btnMinusculas);
 
         txtResultado = new JTextField();
@@ -53,39 +51,23 @@ public class frm15 extends JFrame {
         getContentPane().add(txtResultado);
     }
 
-    protected void convertirAMayusculas() {
+    protected void convertirTextoAMayusculas() {
         String entrada = txtEntrada.getText();
-        String resultado = convertirAMayusculas(entrada);
+        if (entrada.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingresa texto para convertir.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        String resultado = entrada.toUpperCase();
         txtResultado.setText(resultado);
     }
 
-    protected void convertirAMinusculas() {
+    protected void convertirTextoAMinusculas() {
         String entrada = txtEntrada.getText();
-        String resultado = convertirAMinusculas(entrada);
+        if (entrada.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingresa texto para convertir.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        String resultado = entrada.toLowerCase();
         txtResultado.setText(resultado);
-    }
-
-    protected String convertirAMayusculas(String cadena) {
-        StringBuilder rpta = new StringBuilder();
-        int longitud = cadena.length();
-
-        for (int i = 0; i < longitud; i++) {
-            char letra = cadena.charAt(i);
-            rpta.append(Character.toUpperCase(letra));
-        }
-
-        return rpta.toString();
-    }
-
-    protected String convertirAMinusculas(String cadena) {
-        StringBuilder rpta = new StringBuilder();
-        int longitud = cadena.length();
-
-        for (int i = 0; i < longitud; i++) {
-            char letra = cadena.charAt(i);
-            rpta.append(Character.toLowerCase(letra));
-        }
-
-        return rpta.toString();
     }
 }

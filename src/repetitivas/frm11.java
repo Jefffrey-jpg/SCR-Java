@@ -4,26 +4,23 @@ import java.awt.EventQueue;
 import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JTextField;
+import javax.swing.JTextArea;
 
 public class frm11 extends JFrame {
     private static final long serialVersionUID = 1L;
-    JTextField txtResultado;
+    private JTextArea txtResultado;
 
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    frm11 frame = new frm11();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        EventQueue.invokeLater(() -> {
+            try {
+                frm11 frame = new frm11();
+                frame.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }
 
-    @SuppressWarnings("unused")
     public frm11() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(0, 0, 300, 200);
@@ -35,8 +32,8 @@ public class frm11 extends JFrame {
         btnCalcular.addActionListener(e -> calcularCapicuas());
         getContentPane().add(btnCalcular);
 
-        txtResultado = new JTextField();
-        txtResultado.setBounds(20, 70, 240, 30);
+        txtResultado = new JTextArea();
+        txtResultado.setBounds(20, 70, 240, 70);
         txtResultado.setMargin(new Insets(5, 5, 5, 5));
         txtResultado.setEditable(false);
         getContentPane().add(txtResultado);

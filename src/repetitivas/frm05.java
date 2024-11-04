@@ -8,24 +8,20 @@ import javax.swing.JTextField;
 
 public class frm05 extends JFrame {
     private static final long serialVersionUID = 1L;
-    JTextField txtNumero;
-    JTextField txtResultado;
-    String resultado;
+    private JTextField txtNumero;
+    private JTextField txtResultado;
 
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    frm05 frame = new frm05();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        EventQueue.invokeLater(() -> {
+            try {
+                frm05 frame = new frm05();
+                frame.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }
 
-    @SuppressWarnings("unused")
     public frm05() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(0, 0, 300, 300);
@@ -50,13 +46,17 @@ public class frm05 extends JFrame {
     }
 
     protected void generarTablaMultiplicar() {
-        int n = Integer.parseInt(txtNumero.getText());
-        resultado = "";
+        try {
+            int n = Integer.parseInt(txtNumero.getText());
+            StringBuilder resultado = new StringBuilder();
 
-        for (int i = 1; i <= 12; i++) {
-            resultado += n + " x " + i + " = " + (n * i) + "\n";
+            for (int i = 1; i <= 12; i++) {
+                resultado.append(n).append(" x ").append(i).append(" = ").append(n * i).append("\n");
+            }
+
+            txtResultado.setText(resultado.toString());
+        } catch (NumberFormatException e) {
+            txtResultado.setText("Entrada inválida");
         }
-
-        txtResultado.setText(resultado);
     }
 }
